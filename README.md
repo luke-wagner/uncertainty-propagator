@@ -1,13 +1,16 @@
-# Uncertainty Propagator
+# Uncertainty Propagator 🔭🪐
 
-## IN DEVELOPMENT ------------------------------------------------
-A program that calculates the uncertainty for a value given an equation that defines this value. For example, given f = a(b + c), this program can calculate δf using rules of uncertainty propagation. This program has two modes: direct uncertainty calculation, and excel formula generation
+## ⭐ IN DEVELOPMENT ------------------------------------------------
+A program that propagates uncertainty for a function given a mathematical expression. For example, given `f = a(b + c)`, this program can calculate `δf` using rules of uncertainty propagation. This program has two modes: **direct uncertainty calculation** and **Excel formula generation.**
 
-## Installation instructions:
+## Installation/Usage instructions:
 - Clone the git repository
 - Modify main.cpp as necessary
-- Run the command "make" in a git bash terminal at the directory of the repo
+- Run the command "make" in a git bash terminal at the directory of the repo to build the executable
 - Run the resulting main.exe executable
+
+## Requirements:
+- Must have [GNU make](https://gnuwin32.sourceforge.net/packages/make.htm) installed on the system and added to path
 
 ## Mode 1: Direct uncertainty calculation
 Still to do
@@ -41,14 +44,15 @@ std::string δc = "C4";
 // More complex example:
 //      let g = a(a - b)/b
 //      string g = divide(multiply(a, subtract(a, b)), b)
-//      Note: The result of the inner-most operation (subtract(a, b)) is used in the next operation, multiply()
+//      Note: The result of the inner-most operation (subtract(a, b)) is used in the next operation,
+//          multiply()
 //
 // Uncertainty functions handle propagating uncertainty. These functions are all preceded with "u_"
 // Example: given δa and δb, find uncertainty δ(a + b)
 //      string δa_plus_b = u_addsub(δa, δb)
 //
 
-// the resulting string δf contains the formula for the uncertainty of f
+// the resulting string δf contains the Excel formula for the uncertainty of f
 std::string δf = u_multdiv(a, add(b, c), δa, u_addsub(δb, δc));
 std::cout << δf;
 ```
@@ -56,4 +60,8 @@ std::cout << δf;
 ## Types of uncertainty propagation supported:
 - Adding/subtracting of two values a and b where a and b both have some uncertainty
 - Multiplying/diving of two values a and b where a and b both have some uncertainty
-- Exponential uncertainty propagation given a value a^n where a has some uncertainty
+- Exponential uncertainty propagation given a value a^n where a has some uncertainty but not n
+
+## Limitations:
+- Uncertainty propagation for more complex functions not supported (such as uncertainty propagation involving derivatives)
+- Assumes uncertainties are [uncorrelated](https://en.wikipedia.org/wiki/Propagation_of_uncertainty#:~:text=If%20the%20uncertainties%20are%20correlated,group%20averages%20will%20be%20correlated.)
