@@ -2,7 +2,6 @@
 #include "propagating_u.h"
 
 int main(){
-
     //////////////////////////
     // EXAMPLES
     //////////////////////////
@@ -15,12 +14,12 @@ int main(){
     // string variable set to the cell number in which its value is stored.
 
     // example values; these can be changed
-    string a = "B2";
-    string δa = "C2";
-    string b = "B3";
-    string δb = "C3";
-    string c = "B4";
-    string δc = "C4";
+    std::string a = "B2";
+    std::string δa = "C2";
+    std::string b = "B3";
+    std::string δb = "C3";
+    std::string c = "B4";
+    std::string δc = "C4";
 
     // To find δf, we can use a combination of basic and uncertainty function calls
     //
@@ -38,11 +37,11 @@ int main(){
     //
 
     // the resulting string δf contains the formula for the uncertainty of f
-    string δf = u_multdiv(a, add(b, c), δa, u_addsub(δb, δc));
-    cout << δf;
+    std::string δf = u_multdiv(a, add(b, c), δa, u_addsub(δb, δc));
+    std::cout << δf;
 
     // wait for the user to press enter before terminating program
-    cin.get();
+    std::cin.get();
 
     return 0;
 }

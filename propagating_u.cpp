@@ -1,63 +1,61 @@
 #include "propagating_u.h"
 #include <sstream>
 
-using namespace std;
-
-string add(string a, string b){
+std::string add(std::string a, std::string b){
     // don't need parentheses? #check
-    stringstream returnVal;
+    std::stringstream returnVal;
     returnVal << a << "+" << b;
     return returnVal.str();
 }
 
-string subtract(string a, string b){
+std::string subtract(std::string a, std::string b){
     // need parentheses on second term
-    stringstream returnVal;
+    std::stringstream returnVal;
     returnVal << a << "-(" << b << ")";
     return returnVal.str();
 }
 
-string multiply(string a, string b){
+std::string multiply(std::string a, std::string b){
     // need parentheses on both terms
-    stringstream returnVal;
+    std::stringstream returnVal;
     returnVal << "(" << a << ")*(" << b << ")";
     return returnVal.str();
 }
 
-string divide(string a, string b){
+std::string divide(std::string a, std::string b){
     // need parentheses on both terms
-    stringstream returnVal;
+    std::stringstream returnVal;
     returnVal << "(" << a << ")/(" << b << ")";
     return returnVal.str();
 }
 
-string pow(string a, string pow){
-    stringstream returnVal;
-    returnVal << "(" << a << ")^(" << pow << ")";
+std::string pow(std::string a, std::string n){
+    std::stringstream returnVal;
+    returnVal << "(" << a << ")^(" << n << ")";
     return returnVal.str();
 }
 
-string u_addsub(string uA, string uB){
-    stringstream returnVal;
+std::string u_addsub(std::string δa, std::string δb){
+    std::stringstream returnVal;
     returnVal << "SQRT(" << 
-        add(pow(uA, "2"), pow(uB, "2"))
+        add(pow(δa, "2"), pow(δa, "2"))
     << ")";
     return returnVal.str();
 }
 
-string u_multdiv(string a, string b, string uA, string uB){
-    stringstream returnVal;
+std::string u_multdiv(std::string a, std::string b, std::string δa, std::string δb){
+    std::stringstream returnVal;
     returnVal << multiply(a, b) << "*SQRT(" <<
-        add(pow(divide(uA, a), "2"), pow(divide(uB, b), "2"))
+        add(pow(divide(δa, a), "2"), pow(divide(δa, b), "2"))
     << ")";
     return returnVal.str();
 }
 
-string u_pow(string a, string u_a, string n)
+std::string u_pow(std::string x, std::string δx, std::string n)
 {
-    string u_aFractional = divide(u_a, a);
-    string u_resultFractional = multiply(u_aFractional, n);
-    string result = pow(a, n);
-    string u_result = multiply(u_resultFractional, result);
-    return u_result;
+    std::string δxFractional = divide(δx, x);
+    std::string δresultFractional = multiply(δxFractional, n);
+    std::string result = pow(x, n);
+    std::string δresult = multiply(δresultFractional, result);
+    return δresult;
 }
