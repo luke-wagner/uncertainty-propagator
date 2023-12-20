@@ -10,7 +10,7 @@ string add(string a, string b){
     return returnVal.str();
 }
 
-string sub(string a, string b){
+string subtract(string a, string b){
     // need parentheses on second term
     stringstream returnVal;
     returnVal << a << "-(" << b << ")";

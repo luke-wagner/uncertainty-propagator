@@ -1,9 +1,10 @@
 #pragma once
 
-#include <iostream>
-
 using namespace std;
 
+//////////////////////////
+// BASIC FUNCTIONS
+//////////////////////////
 /*
 Gives the excel formula for adding two values
 */
@@ -12,7 +13,7 @@ string add(string a, string b);
 /*
 Gives the excel formula for subtracting two values (a - b)
 */
-string sub(string a, string b);
+string subtract(string a, string b);
 
 /*
 Gives the excel formula for multiplying two values
@@ -29,6 +30,9 @@ Gives the excel formula for raising a value to a power (a^pow)
 */
 string pow(string a, string pow);
 
+//////////////////////////
+// UNCERTAINTY FUNCTIONS
+//////////////////////////
 /*
 Gives the excel formula for uncertainty of two values that are added or subtracted
 - a: the first value
